@@ -1,0 +1,29 @@
+.box-layout {
+    background: url('/images/bg.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.box-layout__box {
+    background: fade-out(white, .15);
+    width: 30rem;
+    text-align: center;
+    padding: $l-size $m-size;
+}
+
+.box-layout__title {
+    margin: 0 0 $m-size 0;
+    line-height: 1;  
+}
+
+.box-layout__box .button--link {
+    padding: 0;
+    color: $blue;
+}
+
+.box-layout__box .errorSpan {
+    color: #D26C3F;
+}
