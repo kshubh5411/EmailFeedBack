@@ -20,6 +20,7 @@ const jsx = (
 
 let hasRendered = false;
 const renderApp = () => {
+    
     if(!hasRendered) {
         ReactDOM.render(jsx, document.getElementById('app'));
         hasRendered = true;
@@ -28,16 +29,20 @@ const renderApp = () => {
 
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
+
+
 const onAuthStateChanged = () => {
+    
     axios({
-        method:'get',
+        method:'get', 
         url:'/users/me',
         headers: {'x-auth': localStorage.getItem('x-auth')}
       }).then((response) => {
         store.dispatch(login({
             uid: response.data._id,
             fullName: response.data.fullName,
-            email: response.data.email
+            email: response.data.email,
+            credit: response.data.credit
         }))
         renderApp();
         if(history.location.pathname === '/') {

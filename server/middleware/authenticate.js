@@ -5,14 +5,15 @@ var authenticate = (req, res, next) => {
 
   User.findByToken(token).then((user) => {
     if(!user) {
-      return Promise.reject();  //res.status(401).send();
+      //return Promise.reject();  //
+      return res.status(401).send({error:"You must Log in"});
     }
 
     req.user = user;
     req.token = token;
     next();
   }).catch((e) => {
-      res.status(401).send();    //401 means authentication is required
+      res.status(401).send({error:"Hey Please log in"});    //401 means authentication is required
   });
 };
 

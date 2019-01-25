@@ -22,6 +22,7 @@ var UserSchema = new mongoose.Schema({
       message: `{VALUE} is not a valid email`
     }
   },
+  credit:{type:Number,default:0},
   password: {
     type: String,
     required: true,
@@ -35,7 +36,8 @@ var UserSchema = new mongoose.Schema({
     token: {
       type: String,
       required: true
-    }
+    },
+    
   }]
 },{ usePushEach : true});
 
@@ -44,7 +46,7 @@ UserSchema.methods.toJSON = function() {
   var user = this;
   var userObject = user.toObject(); //toObject() will convert user to regular object where only properties exist
 
-  return _.pick(userObject, ['_id', 'fullName', 'email']);
+  return _.pick(userObject, ['_id', 'fullName', 'email', 'credit']);
 };
 
 UserSchema.methods.generateAuthToken = function() {

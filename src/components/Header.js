@@ -2,22 +2,45 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {startLogout} from '../actions/auth';
+import Payments from './Payments';
+import onAuthStateChanged from '../app';
+import {fetchUser} from '../actions/user';
 
-export const Header = ({startLogout}) => (
-    <header className="header">
-        <div className="content-container">
-            <div className="header__content">
-                <Link to="/dashboard" className="header__title">
-                    <h1>React-node-auth</h1>
-                </Link>
-                <button className="button button--link" onClick={startLogout}>Logout</button>
-            </div>
-        </div>
-    </header>
-);
+class Header extends React.Component{
+    
+    componentDidMount()
+    {
+       this.props.fetchUser();
+    }
 
-const mapDispatchToProps = (dispatch) => ({
-    startLogout: () => dispatch(startLogout())
-})
+    onClick=()=>
+    {
+        this.props.startLogout();
+    }
+    render()
+    {
+        
+        console.log(this.props.credit);
+        return(
+            <header className="header">
+             <div className="content-container">
+               <div className="header__content">
+                    <Link to="/dashboard" className="header__title">
+                        <h1>React-node-auth</h1>
+                    </Link>
+                    <li><Payments/></li> 
+                    <button>Credit:{this.props.credit}</button>
+                    <button className="button button--link" onClick={this.onClick}>Logout</button>
+               </div>
+             </div>
+            </header>   )
+    }
+}
 
-export default connect(undefined, mapDispatchToProps)(Header);
+
+const mapStateToProps =(state)=>
+{
+   return{ credit:state.user.credit}
+}
+
+export default connect(mapStateToProps,{startLogout,fetchUser})(Header);
