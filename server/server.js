@@ -1,5 +1,4 @@
 require('./config/config');
-
 const path = require('path');
 const _ = require('lodash');
 var express = require('express');
