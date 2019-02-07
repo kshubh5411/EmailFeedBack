@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 //Routes handle
 require('./routes/auth')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/survey')(app);
 
 
 
