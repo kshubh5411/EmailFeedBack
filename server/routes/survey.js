@@ -1,6 +1,6 @@
 const {authenticate} = require('../middleware/authenticate');
 const {checkCredit}  = require('../middleware/checkcredit');
-const {Survey}       = require('../models/survery');
+const Survey      = require('../models/survery');
 const Mailer         = require('../services/mailer');
 const surveyTemplate = require('../services/emailTemplate/surveyTemplate');
 

@@ -1,5 +1,6 @@
 const mongoose= require('mongoose');
-const {recipient}=require('./recipient');
+const recipient=require('./recipient');
+
 const surveySchema= new mongoose.Schema(
     {
        title:String,
@@ -13,5 +14,5 @@ const surveySchema= new mongoose.Schema(
        dateRespond:Date
     }
 );
-const Survey=mongoose.model('Survey',surveySchema);
-module.exports={Survey};
+
+module.exports= mongoose.model("Survey",surveySchema);
