@@ -9,7 +9,7 @@ import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import LoadingPage from './components/LoadingPage';
 import axios from 'axios';
-
+window.axios=axios;
 const store = configureStore();
 
 const jsx = (
