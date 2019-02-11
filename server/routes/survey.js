@@ -8,18 +8,20 @@ module.exports = app =>
 {
    app.post('/api/surveys',authenticate,checkCredit,(req,res)=>
    {
-       const {title,body,subjects,recipients} =req.body;
+       const {title,body,recipients} =req.body;
        const survey= new Survey({
           title,
           body,
-          subjects,
+          subject:req.body.subject,
           recipients:recipients.split(',').map(email=> ({email:email.trim()})),
           _user:req.user._id,
           dateSent:Date.now()
-       })
-       const mailer =new Mailer(survey,surveyTemplate(survey))
-       {
-           mailer.send();
-       }
-   });
-}
+       });
+
+       const mailer =new Mailer(survey,surveyTemplate(survey));
+       mailer.send().then(resp=>
+        {
+            console.lof(resp);
+        });
+   })
+}  

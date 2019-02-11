@@ -1,4 +1,10 @@
 module.exports = survey =>
 {
-   return 'div' + survey.body + 'div';
+   return   `
+       <html>
+         <div>
+             <p>${survey.body}</p>
+          </div>
+       </html>
+   `
 }

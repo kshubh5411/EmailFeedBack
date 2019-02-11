@@ -5,7 +5,7 @@ const surveySchema= new mongoose.Schema(
     {
        title:String,
        body:String,
-       subjects:String,
+       subject:String,
        recipients:[recipient],
        yes:{type:Number,default:0},
        no:{type:Number,default:0},
