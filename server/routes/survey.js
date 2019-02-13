@@ -6,7 +6,11 @@ const surveyTemplate = require('../services/emailTemplate/surveyTemplate');
 
 module.exports = app =>
 {
-   app.post('/api/surveys',authenticate,checkCredit,(req,res)=>
+   app.get('/api/surveys/userreply',(req,res)=>
+   {
+      res.send("Thanks For Voting");
+   })
+   app.post('/api/surveys',authenticate,checkCredit,async(req,res)=>
    {
        const {title,body,recipients} =req.body;
        const survey= new Survey({
@@ -19,9 +23,15 @@ module.exports = app =>
        });
 
        const mailer =new Mailer(survey,surveyTemplate(survey));
-       mailer.send().then(resp=>
-        {
-            console.lof(resp);
-        });
+       try{
+       await mailer.send();
+       await survey.save();
+       req.user.credit-=1;
+       const user=await req.user.save();
+       res.send(user);}
+       catch(err)
+       {
+          res.staus(401).send(err);
+       }
    })
 }  

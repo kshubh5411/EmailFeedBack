@@ -22,4 +22,5 @@ module.exports = app =>
    {
       res.send(_.pick(req.user,['_id', 'credit']));
    })
+   
 }
