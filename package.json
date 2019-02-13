@@ -9,7 +9,7 @@
     "build:prod": "webpack -p --env production",
     "dev-server": "webpack-dev-server",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
-    "start": "node server/server.js",
+    "start": "nodemon server/server.js",
     "heroku-postbuild": "npm run build:prod"
   },
   "dependencies": {
@@ -39,7 +39,7 @@
     "mongodb": "3.0.1",
     "mongoose": "4.13.8",
     "node-sass": "4.5.3",
-    "nodemon": "^1.18.9",
+    "nodemon": "^1.18.10",
     "normalize.css": "7.0.0",
     "numeral": "2.0.6",
     "raf": "3.3.2",
