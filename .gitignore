@@ -2,3 +2,5 @@ node_modules/
 public/dist/
 server/config/config.json
 package-lock.json
+package.json
+webpack.config.js
