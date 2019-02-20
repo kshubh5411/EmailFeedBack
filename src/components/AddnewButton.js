@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
-import Icon from '@material-ui/core/Icon'
+import Icon from '@material-ui/core/Icon';
+import {Link} from "react-router-dom";
 
 const styles = theme => ({
     fab: {
         margin: 0,
         top: 'auto',
-        right: 20,
-        bottom: 20,
+        right: 40,
+        bottom: 40,
         left: 'auto',
         position: 'fixed',
     },
@@ -22,9 +23,11 @@ const styles = theme => ({
     const { classes } = props;
     return (
       <div>
+      <Link to="/surveys/new">
         <Fab color="primary" aria-label="Add" className={classes.fab}>
           <AddIcon />
         </Fab>
+        </Link>
       </div>
     );
   }
