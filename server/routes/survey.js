@@ -10,13 +10,13 @@ module.exports = app =>
    {
       res.send("Thanks For Voting");
    })
-   app.post('/api/surveys',authenticate,checkCredit,async(req,res)=>
-   {
+   app.post('/api/surveys',authenticate,async(req,res)=>
+   {   //console.log(req.body);
        const {title,body,recipients} =req.body;
        const survey= new Survey({
           title,
           body,
-          subject:req.body.subject,
+          subject:req.body.body,
           recipients:recipients.split(',').map(email=> ({email:email.trim()})),
           _user:req.user._id,
           dateSent:Date.now()
@@ -28,10 +28,11 @@ module.exports = app =>
        await survey.save();
        req.user.credit-=1;
        const user=await req.user.save();
+       
        res.send(user);}
        catch(err)
-       {
-          res.staus(401).send(err);
+       {  console.log(user);
+          res.status(401).send(err);
        }
    })
 }  

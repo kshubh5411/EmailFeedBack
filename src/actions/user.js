@@ -5,7 +5,7 @@ import {login, logout} from '../actions/auth';
      type:"ADD_CREDIT",
      user
  })
- export const fetchUser = ()=>
+ export const fetchCredit = ()=>
  {
      return async (dispatch,getState)=>
      {
@@ -22,3 +22,4 @@ import {login, logout} from '../actions/auth';
         dispatch(addCredit(response.data));
      }
  }
+ 

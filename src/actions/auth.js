@@ -12,6 +12,7 @@ export const login = (user) => ({
 })
 
 export const startSignUp = (user) => {
+   // console.log("user" + user);
     return (dispatch) => {
         return axios.post('/users', {
             ...user

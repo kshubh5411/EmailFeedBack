@@ -20,6 +20,7 @@ export default class SignupForm extends React.Component {
             this.setState({validationError: 'passwords do not match'});
         } else {
             this.setState({validationError: ''});
+            console.log({fullName, email, password});
             this.props.startSignUp({fullName, email, password});
         }
     }

@@ -10,11 +10,13 @@ module.exports =(app)=>
 {
     app.post('/users', (req,res) => {
         var body = _.pick(req.body, ['fullName', 'email', 'password']);
+       // console.log("hello");
         var user = new User(body);
       
         user.save().then(() => {
             return user.generateAuthToken();
         }).then((token) => {
+         // console.log(token);
           res.header('x-auth', token).send(user);
         }).catch((e) => {
           res.status(400).send(e);
