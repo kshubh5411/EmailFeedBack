@@ -14,5 +14,4 @@ const surveySchema= new mongoose.Schema(
        dateRespond:Date
     }
 );
-
 module.exports= mongoose.model("Survey",surveySchema);

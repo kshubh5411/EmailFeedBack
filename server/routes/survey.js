@@ -9,7 +9,7 @@ const _              = require('lodash');
 
 module.exports = app =>
 {
-   app.get('/api/surveys/:id/:choice',(req,res)=>
+   app.get('/api/surveys/:surveyId/:choice',(req,res)=>
    {
       res.send("Thanks For Voting");
    })
@@ -28,9 +28,34 @@ module.exports = app =>
          .compact()
          .uniqBy('email','serveyId')
          .value();
-      console.log(events);
+        
+         // For Each Events webhook we update the survey ========
+
+         _.forEach(events,(({email,choice,surveyId}) => { 
+              Survey.updateOne({
+                 _id: surveyId,
+                 recipients:{
+                   $elemMatch: {email:email,respond:false}
+                 }
+              },{
+                 $inc: {[choice]:1},
+                 $set:{'recipients.$.respond':true},
+                 dateRespond: new Date()
+              }).exec() 
+            }))
+
           res.send({});
    })
+
+   app.get('/api/surveys',authenticate,async(req,res)=>{
+      console.log("yeag");
+      const surveys = await Survey.find({_user:req.user._id})
+       .select({recipients:false});
+      res.send(surveys);
+      
+   })
+
+
    app.post('/api/surveys',authenticate,async(req,res)=>
    {  
        const {title,body,recipients} =req.body;
