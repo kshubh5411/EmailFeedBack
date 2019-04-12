@@ -7,8 +7,8 @@ module.exports = survey =>
              <h3>Do You Fascinated With our Community</h3>
               <p>Please Reply for the Following Question</p>
               <p>${survey.body}</p>
-            <div><a href="${domurl.DOMAIN_URL}/api/surveys/userreply">Yes</a></div>
-            <div><a href="${domurl.DOMAIN_URL}/api/surveys/userreply">No</a></div>
+            <div><a href="${domurl.DOMAIN_URL}/api/surveys/${survey.id}/yes">Yes</a></div>
+            <div><a href="${domurl.DOMAIN_URL}/api/surveys/${survey.id}/no">No</a></div>
           </div>
        </html>
    `
