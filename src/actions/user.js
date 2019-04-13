@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {login, logout} from '../actions/auth';
+
  const addCredit = user =>(
  {
      type:"ADD_CREDIT",
@@ -22,4 +22,5 @@ import {login, logout} from '../actions/auth';
         dispatch(addCredit(response.data));
      }
  }
+
  

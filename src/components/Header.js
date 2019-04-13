@@ -3,9 +3,8 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {startLogout} from '../actions/auth';
 import Payments from './Payments';
-import onAuthStateChanged from '../app';
 import {fetchCredit} from '../actions/user';
-import color from '@material-ui/core/colors/orange';
+;
 
 class Header extends React.Component{
     
